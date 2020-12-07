@@ -1,7 +1,7 @@
 package pipeline_test
 
 import (
-	"github.com/The-New-Fork/email-pipeline/pkg/pipeline"
+	"github.com/The-New-Fork/api-pipeline/pkg/pipeline"
 	"github.com/jmoiron/jsonq"
 	"github.com/stretchr/testify/require"
 	"testing"
