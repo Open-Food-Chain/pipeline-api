@@ -64,7 +64,7 @@ id = "2"
 			POP = "$.PurchaseOrderPosition"
 
 	[actions.http_action]
-		url = "http://localhost:8002"
+		url = "http://localhost:8002" # this is the url of the import-api
 		method = "POST"
 
 	[actions.smtp_action]

@@ -6,7 +6,11 @@ branch := $(shell if [ ! -z "${BRANCH}" ]; then echo "${BRANCH}"; else git rev-p
 builder := $(shell if [ ! -z "${BUILDER}" ]; then echo "${BUILDER}"; elif [ ! -z ${BITBUCKET_BUILD_NUMBER} ]; then git log -1 --pretty=format:'%an' | xargs ; else git config user.name; fi)
 ldflags := "-X 'main.version=${version}' -X 'main.branch=${branch}' -X 'main.builder=${builder}' -X 'main.buildDate=${date}'"
 org := thenewfork
-image-name := api-pipeline
+app-name := api-pipeline
+
+test-local:
+	docker-compose up -d
+	go test ./... -p 1
 
 test:
 	go test ./... -p 1
@@ -14,13 +18,16 @@ test:
 build: go-build docker-build
 
 go-build:
-	CGO_ENABLED=0 go build -ldflags ${ldflags} -a -installsuffix cgo -o bin/ftp-pipeline ./cmd/ftp-pipeline/...
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags ${ldflags} -a -installsuffix cgo -o bin/${app-name} ./cmd/${app-name}/...
 
 docker-build:
-	docker build --tag registry.unchain.io/${org}/${image-name}:${version} .
+	docker build --tag registry.unchain.io/${org}/${app-name}:${version} .
+
+docker-login:
+	docker login --username ${REGISTRY_USER} --password ${REGISTRY_PASSWORD} ${REGISTRY_ADDRESS}
 
 push:
-	docker push registry.unchain.io/${org}/${image-name}:${version}
+	docker push registry.unchain.io/${org}/${app-name}:${version}
 
 version:
 	echo ${version}
