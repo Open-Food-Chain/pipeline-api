@@ -1,0 +1,23 @@
+name: Test and build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+
+    services:
+      mailhog:
+        image: "mailhog/mailhog"
+        ports: ["1025:1025"]
+
+    steps:
+      - name: Run tests
+        run: make test
+      - name: Build image
+        run: make build
+      - name: Push image to registry
+        run: make push

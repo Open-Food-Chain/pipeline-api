@@ -1,0 +1,76 @@
+organization = "refresco"
+id = "2"
+
+[logger]
+    level = "debug"
+    format = "text"
+
+[trigger]
+	config = '''
+	## One of the following auth methods
+    # authMethod = "token"
+    # authMethod = "basicauth"
+
+    ## An array of accepted API keys
+    # apiKeys = ["foo", "bar"]
+
+    ## A collection of basic auth credentials that are accepted.
+    # [[basicAuth]]
+    # username = "jim"
+    # password = "secret"
+
+    # [[basicAuth]]
+    # username = "jake"
+    # password = "super-secret"
+	'''
+
+[actions]
+	[actions.fileparser_action]
+		filetype = "CSV"
+		header = true
+		delimiter = 59 # unicode decimal for ';'
+
+	[actions.templater_action]
+		template = '''
+{
+  "anfp": "{{.anfp}}",
+  "dfp": {{.dfp}},
+  "bnfp": "{{.bnfp}}",
+  "pds": {{toDate "02.01.2006" .pds | date "2006-01-02"}},
+  "pde": {{toDate "02.01.2006" .pde | date "2006-01-02"}},
+  "jds": {{.jds}},
+  "jde": {{.jde}},
+  "bbd": {{toDate "02.01.2006" .bbd | date "2006-01-02"}},
+  "pc": "{{.pc}}",
+  "pl": "{{.pl}}",
+  "rmn": "{{.rmn}}",
+  "pon": "{{.pon}}",
+  "pop": "{{.pop}}",
+}
+'''
+		[actions.templater_action.variables]
+			ANFP = "$.ArticleNumberFinishedProduct"
+			DFP = "$.DescriptionFinishedProduct"
+			BNFP = "$.BatchnumberFinishedProduct"
+			PDS = "$.ProductionDayStart"
+			PDE = "$.ProductionDayEnd"
+			JDS = "$.JulianDayStart"
+			JDE = "$.JulianDayEnd"
+			BBD = "$.BestBeforeDate"
+			PC = "$.ProductionCountry"
+			PL = "$.ProductionLocation"
+			RMN = "$.RawMaterialNumber"
+			PON = "$.PurchaseOrderNumber"
+			POP = "$.PurchaseOrderPosition"
+
+	[actions.http_action]
+		url = "http://localhost:8002"
+		method = "POST"
+
+	[actions.smtp_action]
+		username = "test@localhost"
+		password = "password@localhost"
+		hostname = "mailhog"
+		port = ":1025"
+		from = "test@localhost"
+		recipients = ["error@localhost"]
