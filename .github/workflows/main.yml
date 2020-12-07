@@ -27,5 +27,4 @@ jobs:
           DOCKER_REGISTRY: ${{ secrets.REGISTRY_ADDRESS }}
         run: make docker-login
       - name: Push image to registry
-        env:
         run: make push
