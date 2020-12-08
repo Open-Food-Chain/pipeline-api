@@ -14,7 +14,15 @@ import (
 	"testing"
 )
 
+func skipCI(t *testing.T) {
+	if os.Getenv("CI") != "" {
+		t.Skip("Skipping testing in CI environment")
+	}
+}
+
 func TestRefrescoEndToEndSuccess(t *testing.T) {
+	skipCI(t)
+
 	// TEST SETUP
 	// set up mock import-api
 	http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
