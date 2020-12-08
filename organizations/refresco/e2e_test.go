@@ -65,7 +65,7 @@ func TestRefrescoEndToEndSuccess(t *testing.T) {
 	}
 	defer file.Close()
 
-	resp, err := http.Post("http://localhost:80", "binary/octet-stream", file)
+	resp, err := http.Post("http://localhost:8888", "binary/octet-stream", file)
 	require.NoError(t, err, "could not make request to pipeline")
 	defer resp.Body.Close()
 
