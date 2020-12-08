@@ -1,4 +1,4 @@
-package api_pipeline
+package main
 
 import (
 	"github.com/The-New-Fork/api-pipeline/pkg/pipeline"

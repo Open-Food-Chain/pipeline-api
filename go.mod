@@ -6,6 +6,7 @@ replace github.com/spf13/viper v1.2.2 => github.com/unchainio/viper v1.2.2-0.201
 
 require (
 	github.com/go-chi/render v1.0.1
+	github.com/coreos/etcd v3.3.15+incompatible // indirect
 	github.com/jmoiron/jsonq v0.0.0-20150511023944-e874b168d07e
 	github.com/stretchr/testify v1.6.1
 	github.com/unchain/pipeline v0.0.0-20201207235952-afa156021d9f

@@ -15,10 +15,10 @@ test-local:
 test:
 	go test ./... -p 1
 
-build: go-build docker-build
+build: docker-build
 
 go-build:
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags ${ldflags} -a -installsuffix cgo -o bin/${app-name} ./cmd/${app-name}/...
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags ${ldflags} -a -installsuffix cgo -o ./bin/${app-name} ./cmd/${app-name}/...
 
 docker-build:
 	docker build --tag registry.unchain.io/${org}/${app-name}:${version} .
