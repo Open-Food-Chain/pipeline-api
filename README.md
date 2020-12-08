@@ -6,3 +6,6 @@ This repo contains a generic API pipeline implementation for sending product bat
 
 - Run `go run cmd/api-pipeline/main.go`. 
 
+## Test suite
+
+- Run `make test`
