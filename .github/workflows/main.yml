@@ -21,6 +21,6 @@ jobs:
       - name: Build image
         run: make build
       - name: Log into registry
-        run: docker login -u 'robot$tnf-github-never-expire' -p ${{ secrets.REGISTRY_PASSWORD }} ${{ secrets.REGISTRY_ADDRESS }}
+        run: docker login -u 'robot$tnf-github-never-expires' -p ${{ secrets.REGISTRY_PASSWORD }} ${{ secrets.REGISTRY_ADDRESS }}
       - name: Push image to registry
         run: make push
