@@ -11,6 +11,9 @@ import (
 	"github.com/unchainio/pkg/errors"
 )
 
+/*
+	The start function is blocking.
+*/
 func (p *Pipeline) Start() error {
 	// Initialize trigger
 	trigger := &api_trigger.Trigger{}
@@ -20,7 +23,7 @@ func (p *Pipeline) Start() error {
 	}
 	p.log.Debugf("Initialized pipeline trigger")
 
-	go p.start(trigger)
+	p.start(trigger)
 
 	return nil
 }
