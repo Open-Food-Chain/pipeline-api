@@ -74,8 +74,13 @@ func (p *Pipeline) handleNextMessage(trigger domain.Trigger) {
 		return
 	}
 
+	response := map[string]interface{}{
+		"status": "success",
+		"pipeline_tag": tag,
+	}
+
 	// call respond to finish processing
-	err = trigger.Respond(tag, nil, err)
+	err = trigger.Respond(tag, response, err)
 	if err != nil {
 		p.handleError(trigger, tag, err)
 		return
