@@ -14,7 +14,7 @@ func main() {
 
 	errs := xconfig.Load(
 		cfg,
-		xconfig.FromPathFlag("cfg", ""),
+		xconfig.FromPathFlag("cfg", "./config/config.toml"),
 		xconfig.FromEnv(),
 		xconfig.GetInfo(info),
 	)
