@@ -32,6 +32,7 @@ id = "2"
   "rmn": "{{.rmn}}",
   "pon": "{{.pon}}",
   "pop": "{{.pop}}",
+  "mass": "{{.mass}}",
 }
 '''
 		[actions.templater_action.variables]
@@ -48,6 +49,7 @@ id = "2"
 			RMN = "$.RawMaterialNumber"
 			PON = "$.PurchaseOrderNumber"
 			POP = "$.PurchaseOrderPosition"
+			MASS = "$.MassBalance"
 
 	[actions.http_action]
 		url = "http://localhost:8002" # this is the url of the import-api
