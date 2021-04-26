@@ -63,8 +63,8 @@ func TestRefrescoEndToEndSuccess(t *testing.T) {
 	// create and start pipeline
 	p := pipeline.New(cfg, log)
 
-	err := p.Start()
-	require.NoError(t, err)
+	go p.Start()
+	//require.NoError(t, err)
 
 	// send API request to trigger pipeline
 	file, err := os.Open("./example.csv")
