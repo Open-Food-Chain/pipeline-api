@@ -20,7 +20,7 @@ id = "2"
 		template = '''
 {
   "anfp": "{{.anfp}}",
-  "dfp": {{.dfp}},
+  "dfp": "{{.dfp}}",
   "bnfp": "{{.bnfp}}",
   "pds": {{toDate "02.01.2006" .pds | date "2006-01-02"}},
   "pde": {{toDate "02.01.2006" .pde | date "2006-01-02"}},
