@@ -12,7 +12,7 @@ test-local:
 	docker-compose up -d
 	go test ./... -p 1
 
-test:
+test: 
 	go test ./... -p 1
 
 build: docker-build

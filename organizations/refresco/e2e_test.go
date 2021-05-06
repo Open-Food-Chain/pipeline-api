@@ -45,6 +45,7 @@ func TestRefrescoEndToEndSuccess(t *testing.T) {
   "rmn": "11200100520",
   "pon": "4500885082",
   "pop": "10",
+  "mass":1000,
 }
 `
 		require.Equal(t, expectedBody, string(resBody), "http request body received from pipeline on import api does not match expected body")

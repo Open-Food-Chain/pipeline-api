@@ -35,6 +35,8 @@ id = "2"
   "mass": "{{.mass}}",
 }
 '''
+# "bbd": "{{toDate "02.01.2006" .bbd | date "2006-01-02"}}",  "{{toDate "02.01.2006" .bbd | date "2006-01-02"}}", 
+
 		[actions.templater_action.variables]
 			ANFP = "$.ArticleNumberFinishedProduct"
 			DFP = "$.DescriptionFinishedProduct"
@@ -43,7 +45,7 @@ id = "2"
 			PDE = "$.ProductionDayEnd"
 			JDS = "$.JulianDayStart"
 			JDE = "$.JulianDayEnd"
-			BBD = "$.BestBeforeDate"
+			#BBD = "$.ProductionCountry"
 			PC = "$.ProductionCountry"
 			PL = "$.ProductionLocation"
 			RMN = "$.RawMaterialNumber"
