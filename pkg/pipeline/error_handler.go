@@ -7,6 +7,13 @@ import (
 )
 
 func (p *Pipeline) handleError(trigger domain.Trigger, tag string, err error) {
+	
+	err = trigger.Respond(tag, map[string]interface{}{
+		"error": err,
+	}, err)
+	if err != nil {
+		p.log.Errorf("Could not handle error, msg: %v", err)
+	}
 	// send alert email
 	_, err = smtp_action.Invoke(p.log, map[string]interface{}{
 		"username":   p.cfg.Actions.SmtpAction.Username,
@@ -24,10 +31,6 @@ Error message: %v
 		p.log.Errorf("Could not handle error, msg: %v", err)
 	}
 
-	err = trigger.Respond(tag, map[string]interface{}{
-		"error": err,
-	}, err)
-	if err != nil {
-		p.log.Errorf("Could not handle error, msg: %v", err)
-	}
+	
+	
 }
